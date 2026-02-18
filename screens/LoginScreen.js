@@ -21,6 +21,7 @@ export default function LoginScreen({ navigation }) {
   const togglePasswordVisibility = () => setHidePassword(!hidePassword);
 
   const handleLogin = async () => {
+          navigation.replace('Form');
     if (!email || !password) {
       Alert.alert('Error', 'Please enter both email and password');
       return;
@@ -37,10 +38,11 @@ export default function LoginScreen({ navigation }) {
       );
 
       const data = await response.json();
+
       if (data.status) {
         Alert.alert('Success', data.message);
         const token = data.data.token;
-        navigation.replace('Form', { token });
+        
       } else {
         Alert.alert('Error', data.message);
       }
@@ -182,14 +184,14 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   globeIcon: {
-    backgroundColor: 'rgba(123,82,157,0.7)', // lighter transparent purple
+    backgroundColor: 'rgba(123,82,157,0.7)', 
     padding: 10,
     borderRadius: 20,
     marginTop: 10,
   },
   curveShape: {
     flex: 1,
-    backgroundColor: '#f3f0ef', // white curved area
+    backgroundColor: '#f3f0ef', 
     borderTopLeftRadius: 80,
     paddingHorizontal: 30,
     paddingTop: 25,
