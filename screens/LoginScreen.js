@@ -21,7 +21,6 @@ export default function LoginScreen({ navigation }) {
   const togglePasswordVisibility = () => setHidePassword(!hidePassword);
 
   const handleLogin = async () => {
-          navigation.replace('Form');
     if (!email || !password) {
       Alert.alert('Error', 'Please enter both email and password');
       return;
@@ -38,11 +37,10 @@ export default function LoginScreen({ navigation }) {
       );
 
       const data = await response.json();
-
       if (data.status) {
         Alert.alert('Success', data.message);
         const token = data.data.token;
-        
+        navigation.replace('Form', { token });
       } else {
         Alert.alert('Error', data.message);
       }
